@@ -1,0 +1,396 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<style>
+  body {
+    background: #7A8A94;
+    background: linear-gradient(#7A8A94, #2F4858);
+  }
+
+  <!-- table {
+    table-layout: fixed;
+  }
+
+  td {
+    word-wrap: break-word;
+  } -->
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .navigation ul a {
+    display: block;
+    text-transform: uppercase;
+    color: #2F4858;
+    font-size: 15px;
+    text-decoration-line: none;
+    padding: 14px 16px;
+  }
+
+  .navigation ul a:visited {
+    text-decoration: none;
+  }
+
+  .navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    justify-content: : "space-between";
+  }
+
+  .navigation li {
+    float: right;
+  }
+
+  .navigation li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    color: #2F4858;
+    text-decoration: none;
+  }
+
+  li a:hover {
+    background-color: #ECEEEF;
+  }
+
+  #spinner {
+    width: 40px;
+    height: 40px;
+    background-color: #333;
+
+    margin: 100px auto;
+    -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+    animation: sk-rotateplane 1.2s infinite ease-in-out;
+  }
+
+  @-webkit-keyframes sk-rotateplane {
+    0% {
+      -webkit-transform: perspective(120px)
+    }
+    50% {
+      -webkit-transform: perspective(120px) rotateY(180deg)
+    }
+    100% {
+      -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg)
+    }
+  }
+
+  @keyframes sk-rotateplane {
+    0% {
+      transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+      -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+    }
+    50% {
+      transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+      -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+    }
+    100% {
+      transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+      -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    }
+  }
+
+  .content {
+    position: relative;
+    /* This protects the inner element from being blurred */
+    padding: 100px;
+    background-color: #DDD;
+    font-family: "Courier New";
+    font-weight: 900;
+    max-width: 1500px;
+    min-height: 1000px;
+    margin: auto;
+    background: white;
+    padding: 10px;
+  }
+
+  .results table {
+    font-family: "Courier New", sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border-spacing: 10px;
+    border-color: #D9DDE0;
+  }
+
+  .results tbody {
+    background-color: white;
+  }
+
+  .results th {
+    font-family: "Courier New";
+    font-size: 12px;
+    color: #fff;
+    line-height: 1.4;
+    text-transform: uppercase;
+    background-color: #2F4858;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-left: 1px solid #ddd;
+  }
+
+  .results td {
+    font-family: "Courier New";
+    font-size: 14px;
+    color: #5a6e7a;
+    line-height: 1.4;
+    position: relative;
+    padding: 10px;
+    border-left: 1px solid #ddd;
+  }
+
+  .results tr:nth-child(odd) {
+    background-color: white;
+  }
+
+  .results tr:nth-child(even) {
+    background-color: #D9DDE0;
+  }
+
+  .subresults table {}
+
+  .sub tbody {
+    background-color: white;
+  }
+
+  .subresults th {
+    font-family: Courier New;
+    font-size: 10px;
+    color: #fff;
+    line-height: 1.0;
+    text-transform: uppercase;
+    background-color: #677985;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-left: 1px solid #ddd;
+  }
+
+  .subresults td {
+    font-family: Courier New;
+    font-size: 14px;
+    color: #5a6e7a;
+    line-height: 1.4;
+    position: relative;
+    padding: 10px;
+    border-left: 1px solid #ddd;
+  }
+
+  .subresults tr:nth-child(odd) {
+    background-color: #F8F8F9;
+  }
+
+  .subresults tr:nth-child(even) {
+    background-color: #C6C9CC;
+  }
+
+  .no-border {
+    border-left: none;
+  }
+
+  .results tr:hover {
+    color: #84370E
+  }
+
+  .results td:hover {
+    color: #84370E
+  }
+
+  .subresults tr:hover {
+    color: #B14913
+  }
+
+  .subresults td:hover {
+    color: #B14913
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  .Inputs {
+    display: flex;
+    justify-content: center;
+    line-height: 60px;
+    margin: 0 50px 0 0;
+  }
+
+  .stringInput input {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 20px;
+    line-height: 20px;
+    width: 200px;
+    vertical-align: middle;
+    padding: 5px 10px 5px 10px !important;
+  }
+
+  .btnInput button {
+    background-color: #FFF;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 30px;
+    padding: 5px;
+    vertical-align: middle;
+  }
+
+  input,
+  button {
+    margin: 0;
+  }
+</style>
+
+<body>
+  <div class="content">
+    <div class="navigation">
+      <ul>
+        <a href="">Puffin</a>
+        <li><a id="contact">Contact</a></li>
+        <li><a href="about">About</a></li>
+        <li><a>News</a></li>
+      </ul>
+    </div>
+    <div class="container">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="Inputs">
+          <div class="stringInput">
+            {{ form.address }}
+          </div>
+          <div class="btnInput">
+            <button id="submit_button" type="submit" class="button" onclick="function()">Add Url</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="ajax_results results">
+
+    </div>
+    {% if form %}
+    <img class="center" id="loading" src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"> {% endif %}
+  </div>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <!--<script src="{% static 'js/app.js' %}"></script>-->
+  <script>
+    depthOf = function(object) {
+      var level = 1;
+      var key;
+      for (key in object) {
+        if (!object.hasOwnProperty(key)) continue;
+
+        if (typeof object[key] == 'object') {
+          var depth = depthOf(object[key]) + 1;
+          level = Math.max(depth, level);
+        }
+      }
+      return level;
+    }
+
+    $(document).ready(function() {
+      function makeTable() {
+        let tbl = document.createElement("table");
+        let att = document.createAttribute("class");
+        att.value = "results";
+        tbl.setAttributeNode(att);
+        return tbl
+      };
+
+      function makeMainHeader(title, colspan) {
+        let header = document.createElement("th");
+        att = document.createAttribute("colspan");
+        att.value = colspan;
+        header.setAttributeNode(att);
+        let text = document.createTextNode(title);
+        header.appendChild(text);
+        return header;
+      };
+
+      function makeSubHeaders() {
+        let subheaderRow = document.createElement("tr");
+        subheaderRow.appendChild(makeSubHeader("Key", 0));
+        subheaderRow.appendChild(makeSubHeader("Value", 0));
+        return subheaderRow;
+      };
+
+      function makeSubHeader(title, colspan) {
+        let subheader = document.createElement("th");
+        if (colspan >= 0) {
+          att = document.createAttribute("colspan");
+          att.value = colspan;
+          subheader.setAttributeNode(att);
+        };
+        subheader.appendChild(document.createTextNode(title));
+        return subheader;
+      };
+
+      function buildColText(finalObj) {
+        return JSON.stringify(finalObj);
+      };
+
+      function makeColInTable(t) {
+        let column = document.createElement("td");
+        let text = document.createTextNode(t);
+        column.appendChild(text);
+        return column
+      };
+
+      function makeRowInTable(t) {
+        let row = document.createElement("tr");
+        let text = document.createTextNode(t);
+        row.appendChild(text);
+        return row
+      };
+
+      function makeTableBody(obj, i) {
+        let tblBody = document.createElement("tbody");
+        let final_data = obj[(Object.keys(obj)[i])].final_dictionary;
+        for (let j = 0; j < Object.keys(final_data).length; j++) {
+          let row = document.createElement("tr");
+          row.appendChild(makeColInTable(Object.keys(final_data)[j]));
+          //row.appendChild(makeColInTable(Object.keys(final_data[Object.keys(final_data)[j]])));
+          row.appendChild(makeColInTable(buildColText(final_data[Object.keys(final_data)[j]])));
+          tblBody.appendChild(row);
+        };
+        return tblBody;
+      };
+
+      $.ajax({
+        type: "GET",
+        url: "ajax/loading",
+        success: function(data) {
+          let obj = JSON.parse(data);
+          console.log(obj)
+          let main = document.getElementsByClassName("ajax_results")[0];
+
+          for (let i = 0; i < Object.keys(obj).length; i++) {
+            let tbl = makeTable();
+
+            tbl.appendChild(makeMainHeader((Object.keys(obj)[i]), 5));
+            tbl.appendChild(makeSubHeaders());
+            tbl.appendChild(makeTableBody(obj, i));
+            document.getElementById("loading").style.display = 'none';
+            main.appendChild(tbl);
+          }
+
+        },
+        error: function(xhr, status, error) {
+          console.log(xhr);
+          console.log(status);
+          console.log(error);
+        }
+      });
+    });
+  </script>
+  {% block javascript %}{% endblock %}
+</body>
+
+</html>
